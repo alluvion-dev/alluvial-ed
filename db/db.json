@@ -1,0 +1,1059 @@
+{
+   "categories": {
+      "countries": {
+         "label": "Countries",
+         "icon_src": "/assets/img/flags.png",
+         "words": [
+            "america",
+            "japan",
+            "australia",
+            "theUK",
+            "southAfrica",
+            "newZealand",
+            "korea",
+            "india",
+            "china",
+            "germany"
+         ]
+      },
+      "feelings": {
+         "label": "Feelings",
+         "icon_src": "/assets/img/feelings.png",
+         "words": [
+            "happy",
+            "sad",
+            "angry",
+            "hungry",
+            "thirsty",
+            "sleepy",
+            "tired",
+            "nervous",
+            "sick",
+            "hurt"
+         ]
+      },
+      "feelingLevels": {
+         "label": "Feeling Levels",
+         "icon_src": "/assets/img/feelingLevels.png",
+         "words": [
+            "great",
+            "good",
+            "fine",
+            "soso",
+            "notSoGood"
+         ]
+      },
+      "numbers1to10": {
+         "label": "Numbers (1~10)",
+         "icon_src": "/assets/img/numbers1to10.svg",
+         "words": [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten"
+         ]
+      },
+      "numbers11to20": {
+         "label": "Numbers (11~20)",
+         "icon_src": "/assets/img/numbers11to20.svg",
+         "words": [
+            "eleven",
+            "twelve",
+            "thirteen",
+            "fourteen",
+            "fifteen",
+            "sixteen",
+            "seventeen",
+            "eighteen",
+            "nineteen",
+            "twenty"
+         ]
+      },
+      "colors": {
+         "label": "Colors",
+         "icon_src": "/assets/img/Color_circle_(RGB).svg",
+         "words": [
+            "blue",
+            "red",
+            "grey",
+            "black",
+            "white",
+            "yellow",
+            "purple",
+            "green",
+            "orange",
+            "pink"
+         ]
+      },
+      "sports": {
+         "label": "Sports",
+         "icon_src": "/assets/img/sports.png",
+         "words": [
+            "soccer",
+            "baseball",
+            "basketball",
+            "dodgeball",
+            "swimming",
+            "tennis",
+            "tableTennis",
+            "volleyball"
+         ]
+      },
+      "food1": {
+         "label": "Food (1)",
+         "icon_src": "/assets/img/food1.png",
+         "words": [
+            "iceCream",
+            "milk",
+            "pudding",
+            "onion",
+            "greenPepper",
+            "strawberry",
+            "carrot",
+            "cucumber",
+            "orangeJuice"
+         ]
+      },
+      "food2": {
+         "label": "Food (2)",
+         "icon_src": "/assets/img/food2.png",
+         "words": [
+            "apple",
+            "orangeFood",
+            "grapes",
+            "kiwi",
+            "lemon",
+            "noodles",
+            "hamburger",
+            "egg",
+            "pizza",
+            "jam"
+         ]
+      },
+      "shapes": {
+         "label": "Shapes",
+         "icon_src": "/assets/img/shapes.svg",
+         "words": [
+            "square",
+            "circle",
+            "rectangle",
+            "triangle",
+            "heart",
+            "star",
+            "diamond"
+         ]
+      },
+      "firstSixMonths": {
+         "label": "Months (1~6)",
+         "icon_src": "/assets/img/firstSixMonths.svg",
+         "words": [
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june"
+         ]
+      },
+      "lastSixMonths": {
+         "label": "Months (7~12)",
+         "icon_src": "/assets/img/lastSixMonths.svg",
+         "words": [
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december"
+         ]
+      },
+      "months": {
+         "label": "Months",
+         "icon_src": "/assets/img/months.svg",
+         "words": [
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december"
+         ]
+      },
+      "seasons": {
+         "label": "Seasons",
+         "icon_src": "/assets/img/seasons.png",
+         "words": [
+            "spring",
+            "summer",
+            "fall",
+            "winter"
+         ]
+      },
+      "subjects": {
+         "label": "Subjects",
+         "icon_src": "/assets/img/subjects.png",
+         "words": [
+            "math",
+            "science",
+            "english",
+            "japanese",
+            "socialStudies",
+            "homeEconomics",
+            "calligraphy",
+            "music",
+            "pe",
+            "moralEducation",
+            "artsAndCrafts"
+         ]
+      },"questionWords": {
+         "label": "Question Words",
+         "icon_src": "/assets/img/questionWords.png",
+         "words": [
+            "who",
+            "what",
+            "when",
+            "where",
+            "why",
+            "how"
+         ]
+      },
+      "places1": {
+         "label": "Places (1)",
+         "icon_src": "/assets/img/places1.png",
+         "words": [
+            "mountain",
+            "sea",
+            "river",
+            "park",
+            "zoo",
+            "school",
+            "library",
+            "restaurant",
+            "cakeShop",
+            "convenienceStore"
+         ]
+      },
+      "places2": {
+         "label": "Places (2)",
+         "icon_src": "/assets/img/places2.png",
+         "words": [
+            "amusementPark",
+            "aquarium",
+            "castle",
+            "departmentStore",
+            "flowerShop",
+            "movieTheater",
+            "museum",
+            "policeStation",
+            "postOffice"
+         ]
+      },
+      "schoolEvents": {
+         "label": "School Events",
+         "icon_src": "/assets/img/schoolEvents.png",
+         "words": [
+            "graduationCeremony",
+            "entranceCeremony",
+            "fieldTrip",
+            "schoolTrip",
+            "sportsDay",
+            "schoolPlay",
+            "swimmingMeet",
+            "marathon",
+            "musicFestival",
+            "chorusContest",
+            "cultureFestival",
+            "volunteerDay"
+         ]
+      }
+   },
+   "words": {
+      "blue": {
+         "label": "blue",
+         "img_src": "/assets/img/blue.svg",
+         "audio_src": "/assets/audio/blue.mp3"
+      },
+      "red": {
+         "label": "red",
+         "img_src": "/assets/img/red.svg",
+         "audio_src": "/assets/audio/red.mp3"
+      },
+      "grey": {
+         "label": "grey",
+         "img_src": "/assets/img/grey.svg",
+         "audio_src": "/assets/audio/grey.mp3"
+      },
+      "pink": {
+         "label": "pink",
+         "img_src": "/assets/img/pink.svg",
+         "audio_src": "/assets/audio/pink.mp3"
+      },
+      "green": {
+         "label": "green",
+         "img_src": "/assets/img/green.svg",
+         "audio_src": "/assets/audio/green.mp3"
+      },
+      "purple": {
+         "label": "purple",
+         "img_src": "/assets/img/purple.svg",
+         "audio_src": "/assets/audio/purple.mp3"
+      },
+      "yellow": {
+         "label": "yellow",
+         "img_src": "/assets/img/yellow.svg",
+         "audio_src": "/assets/audio/yellow.mp3"
+      },
+      "orange": {
+         "label": "orange",
+         "img_src": "/assets/img/orange.svg",
+         "audio_src": "/assets/audio/orange.mp3"
+      },
+      "black": {
+         "label": "black",
+         "img_src": "/assets/img/black.svg",
+         "audio_src": "/assets/audio/black.mp3"
+      },
+      "white": {
+         "label": "white",
+         "img_src": "/assets/img/white.svg",
+         "audio_src": "/assets/audio/white.mp3"
+      },
+      "america": {
+         "label": "America",
+         "img_src": "/assets/img/Flag_of_the_United_States.svg",
+         "audio_src": "/assets/audio/america.mp3"
+      },
+      "japan": {
+         "label": "Japan",
+         "img_src": "/assets/img/Flag_of_Japan.svg",
+         "audio_src": "/assets/audio/japan.mp3"
+      },
+      "australia": {
+         "label": "Australia",
+         "img_src": "/assets/img/Flag_of_Australia.svg",
+         "audio_src": "/assets/audio/australia.mp3"
+      },
+      "theUnitedKingdom": {
+         "label": "the United Kingdom",
+         "img_src": "/assets/img/Flag_of_the_United_Kingdom.svg",
+         "audio_src": "/assets/audio/theUnitedKingdom.mp3"
+      },
+      "theUK": {
+         "label": "the U.K.",
+         "img_src": "/assets/img/Flag_of_the_United_Kingdom.svg",
+         "audio_src": "/assets/audio/theUK.mp3"
+      },
+      "southAfrica": {
+         "label": "South Africa",
+         "img_src": "/assets/img/Flag_of_South_Africa.svg",
+         "audio_src": "/assets/audio/southAfrica.mp3"
+      },
+      "newZealand": {
+         "label": "New Zealand",
+         "img_src": "/assets/img/Flag_of_New_Zealand.svg",
+         "audio_src": "/assets/audio/newZealand.mp3"
+      },
+      "southKorea": {
+         "label": "South Korea",
+         "img_src": "/assets/img/Flag_of_South_Korea.svg",
+         "audio_src": "/assets/audio/southKorea.mp3"
+      },
+      "korea": {
+         "label": "Korea",
+         "img_src": "/assets/img/Flag_of_South_Korea.svg",
+         "audio_src": "/assets/audio/korea.mp3"
+      },
+      "india": {
+         "label": "India",
+         "img_src": "/assets/img/Flag_of_India.svg",
+         "audio_src": "/assets/audio/india.mp3"
+      },
+      "china": {
+         "label": "China",
+         "img_src": "/assets/img/Flag_of_the_People's_Republic_of_China.svg",
+         "audio_src": "/assets/audio/china.mp3"
+      },
+      "germany": {
+         "label": "Germany",
+         "img_src": "/assets/img/Flag_of_Germany.svg",
+         "audio_src": "/assets/audio/germany.mp3"
+      },
+      "one": {
+         "label": "one",
+         "img_src": "/assets/img/one.svg",
+         "audio_src": "/assets/audio/one.mp3"
+      },
+      "two": {
+         "label": "two",
+         "img_src": "/assets/img/two.svg",
+         "audio_src": "/assets/audio/two.mp3"
+      },
+      "three": {
+         "label": "three",
+         "img_src": "/assets/img/three.svg",
+         "audio_src": "/assets/audio/three.mp3"
+      },
+      "four": {
+         "label": "four",
+         "img_src": "/assets/img/four.svg",
+         "audio_src": "/assets/audio/four.mp3"
+      },
+      "five": {
+         "label": "five",
+         "img_src": "/assets/img/five.svg",
+         "audio_src": "/assets/audio/five.mp3"
+      },
+      "six": {
+         "label": "six",
+         "img_src": "/assets/img/six.svg",
+         "audio_src": "/assets/audio/six.mp3"
+      },
+      "seven": {
+         "label": "seven",
+         "img_src": "/assets/img/seven.svg",
+         "audio_src": "/assets/audio/seven.mp3"
+      },
+      "eight": {
+         "label": "eight",
+         "img_src": "/assets/img/eight.svg",
+         "audio_src": "/assets/audio/eight.mp3"
+      },
+      "nine": {
+         "label": "nine",
+         "img_src": "/assets/img/nine.svg",
+         "audio_src": "/assets/audio/nine.mp3"
+      },
+      "ten": {
+         "label": "ten",
+         "img_src": "/assets/img/ten.svg",
+         "audio_src": "/assets/audio/ten.mp3"
+      },
+      "eleven": {
+         "label": "eleven",
+         "img_src": "/assets/img/eleven.svg",
+         "audio_src": "/assets/audio/eleven.mp3"
+      },
+      "twelve": {
+         "label": "twelve",
+         "img_src": "/assets/img/twelve.svg",
+         "audio_src": "/assets/audio/twelve.mp3"
+      },
+      "thirteen": {
+         "label": "thirteen",
+         "img_src": "/assets/img/thirteen.svg",
+         "audio_src": "/assets/audio/thirteen.mp3"
+      },
+      "fourteen": {
+         "label": "fourteen",
+         "img_src": "/assets/img/fourteen.svg",
+         "audio_src": "/assets/audio/fourteen.mp3"
+      },
+      "fifteen": {
+         "label": "fifteen",
+         "img_src": "/assets/img/fifteen.svg",
+         "audio_src": "/assets/audio/fifteen.mp3"
+      },
+      "sixteen": {
+         "label": "sixteen",
+         "img_src": "/assets/img/sixteen.svg",
+         "audio_src": "/assets/audio/sixteen.mp3"
+      },
+      "seventeen": {
+         "label": "seventeen",
+         "img_src": "/assets/img/seventeen.svg",
+         "audio_src": "/assets/audio/seventeen.mp3"
+      },
+      "eighteen": {
+         "label": "eighteen",
+         "img_src": "/assets/img/eighteen.svg",
+         "audio_src": "/assets/audio/eighteen.mp3"
+      },
+      "nineteen": {
+         "label": "nineteen",
+         "img_src": "/assets/img/nineteen.svg",
+         "audio_src": "/assets/audio/nineteen.mp3"
+      },
+      "twenty": {
+         "label": "twenty",
+         "img_src": "/assets/img/twenty.svg",
+         "audio_src": "/assets/audio/twenty.mp3"
+      },
+      "happy": {
+         "label": "happy",
+         "img_src": "/assets/img/happy.png",
+         "audio_src": "/assets/audio/happy.mp3"
+      },
+      "nervous": {
+         "label": "nervous",
+         "img_src": "/assets/img/nervous.png",
+         "audio_src": "/assets/audio/nervous.mp3"
+      },
+      "sleepy": {
+         "label": "sleepy",
+         "img_src": "/assets/img/sleepy.png",
+         "audio_src": "/assets/audio/sleepy.mp3"
+      },
+      "tired": {
+         "label": "tired",
+         "img_src": "/assets/img/tired.png",
+         "audio_src": "/assets/audio/tired.mp3"
+      },
+      "thirsty": {
+         "label": "thirsty",
+         "img_src": "/assets/img/thirsty.png",
+         "audio_src": "/assets/audio/thirsty.mp3"
+      },
+      "hungry": {
+         "label": "hungry",
+         "img_src": "/assets/img/hungry.png",
+         "audio_src": "/assets/audio/hungry.mp3"
+      },
+      "sad": {
+         "label": "sad",
+         "img_src": "/assets/img/sad.png",
+         "audio_src": "/assets/audio/sad.mp3"
+      },
+      "angry": {
+         "label": "angry",
+         "img_src": "/assets/img/angry.png",
+         "audio_src": "/assets/audio/angry.mp3"
+      },
+      "sick": {
+         "label": "sick",
+         "img_src": "/assets/img/sick.png",
+         "audio_src": "/assets/audio/sick.mp3"
+      },
+      "hurt": {
+         "label": "hurt",
+         "img_src": "/assets/img/hurt.png",
+         "audio_src": "/assets/audio/hurt.mp3"
+      },
+      "great": {
+         "label": "great",
+         "img_src": "/assets/img/great.png",
+         "audio_src": "/assets/audio/great.mp3"
+      },
+      "good": {
+         "label": "good",
+         "img_src": "/assets/img/good.png",
+         "audio_src": "/assets/audio/good.mp3"
+      },
+      "fine": {
+         "label": "fine",
+         "img_src": "/assets/img/fine.png",
+         "audio_src": "/assets/audio/fine.mp3"
+      },
+      "soso": {
+         "label": "so-so",
+         "img_src": "/assets/img/soso.png",
+         "audio_src": "/assets/audio/soso.mp3"
+      },
+      "notSoGood": {
+         "label": "not so good",
+         "img_src": "/assets/img/notSoGood.png",
+         "audio_src": "/assets/audio/notSoGood.mp3"
+      },
+      "january": {
+         "label": "January",
+         "img_src": "/assets/img/january.svg",
+         "audio_src": "/assets/audio/january.mp3"
+      },
+      "february": {
+         "label": "February",
+         "img_src": "/assets/img/february.svg",
+         "audio_src": "/assets/audio/february.mp3"
+      },
+      "march": {
+         "label": "March",
+         "img_src": "/assets/img/march.svg",
+         "audio_src": "/assets/audio/march.mp3"
+      },
+      "april": {
+         "label": "April",
+         "img_src": "/assets/img/april.svg",
+         "audio_src": "/assets/audio/april.mp3"
+      },
+      "may": {
+         "label": "May",
+         "img_src": "/assets/img/may.svg",
+         "audio_src": "/assets/audio/may.mp3"
+      },
+      "june": {
+         "label": "June",
+         "img_src": "/assets/img/june.svg",
+         "audio_src": "/assets/audio/june.mp3"
+      },
+      "july": {
+         "label": "July",
+         "img_src": "/assets/img/july.svg",
+         "audio_src": "/assets/audio/july.mp3"
+      },
+      "august": {
+         "label": "August",
+         "img_src": "/assets/img/august.svg",
+         "audio_src": "/assets/audio/august.mp3"
+      },
+      "september": {
+         "label": "September",
+         "img_src": "/assets/img/september.svg",
+         "audio_src": "/assets/audio/september.mp3"
+      },
+      "october": {
+         "label": "October",
+         "img_src": "/assets/img/october.svg",
+         "audio_src": "/assets/audio/october.mp3"
+      },
+      "november": {
+         "label": "November",
+         "img_src": "/assets/img/november.svg",
+         "audio_src": "/assets/audio/november.mp3"
+      },
+      "december": {
+         "label": "December",
+         "img_src": "/assets/img/december.svg",
+         "audio_src": "/assets/audio/december.mp3"
+      },
+      "spring": {
+         "label": "spring",
+         "img_src": "/assets/img/spring.png",
+         "audio_src": "/assets/audio/spring.mp3"
+      },
+      "summer": {
+         "label": "summer",
+         "img_src": "/assets/img/summer.png",
+         "audio_src": "/assets/audio/summer.mp3"
+      },
+      "fall": {
+         "label": "fall",
+         "img_src": "/assets/img/fall.png",
+         "audio_src": "/assets/audio/fall.mp3"
+      },
+      "winter": {
+         "label": "winter",
+         "img_src": "/assets/img/winter.png",
+         "audio_src": "/assets/audio/winter.mp3"
+      },
+      "math": {
+         "label": "math",
+         "img_src": "/assets/img/math.png",
+         "audio_src": "/assets/audio/math.mp3"
+      },
+      "science": {
+         "label": "science",
+         "img_src": "/assets/img/science.png",
+         "audio_src": "/assets/audio/science.mp3"
+      },
+      "english": {
+         "label": "English",
+         "img_src": "/assets/img/english.png",
+         "audio_src": "/assets/audio/english.mp3"
+      },
+      "japanese": {
+         "label": "Japanese",
+         "img_src": "/assets/img/japanese.png",
+         "audio_src": "/assets/audio/japanese.mp3"
+      },
+      "socialStudies": {
+         "label": "social studies",
+         "img_src": "/assets/img/socialStudies.png",
+         "audio_src": "/assets/audio/socialStudies.mp3"
+      },
+      "artsAndCrafts": {
+         "label": "arts and crafts",
+         "img_src": "/assets/img/artsAndCrafts.png",
+         "audio_src": "/assets/audio/artsAndCrafts.mp3"
+      },
+      "homeEconomics": {
+         "label": "home economics",
+         "img_src": "/assets/img/homeEconomics.png",
+         "audio_src": "/assets/audio/homeEconomics.mp3"
+      },
+      "moralEducation": {
+         "label": "moral education",
+         "img_src": "/assets/img/moralEducation.png",
+         "audio_src": "/assets/audio/moralEducation.mp3"
+      },
+      "pe": {
+         "label": "P.E.",
+         "img_src": "/assets/img/pe.png",
+         "audio_src": "/assets/audio/pe.mp3"
+      },
+      "calligraphy": {
+         "label": "calligraphy",
+         "img_src": "/assets/img/calligraphy.png",
+         "audio_src": "/assets/audio/calligraphy.mp3"
+      },
+      "music": {
+         "label": "music",
+         "img_src": "/assets/img/music.png",
+         "audio_src": "/assets/audio/music.mp3"
+      },
+      "amusementPark": {
+         "label": "amusement park",
+         "img_src": "/assets/img/amusementPark.png",
+         "audio_src": "/assets/audio/amusementPark.mp3"
+      },
+      "aquarium": {
+         "label": "aquarium",
+         "img_src": "/assets/img/aquarium.png",
+         "audio_src": "/assets/audio/aquarium.mp3"
+      },
+      "cakeShop": {
+         "label": "cake shop",
+         "img_src": "/assets/img/cakeShop.png",
+         "audio_src": "/assets/audio/cakeShop.mp3"
+      },
+      "castle": {
+         "label": "castle",
+         "img_src": "/assets/img/castle.png",
+         "audio_src": "/assets/audio/castle.mp3"
+      },
+      "convenienceStore": {
+         "label": "convenience store",
+         "img_src": "/assets/img/convenienceStore.png",
+         "audio_src": "/assets/audio/convenienceStore.mp3"
+      },
+      "departmentStore": {
+         "label": "department store",
+         "img_src": "/assets/img/departmentStore.png",
+         "audio_src": "/assets/audio/departmentStore.mp3"
+      },
+      "flowerShop": {
+         "label": "flower shop",
+         "img_src": "/assets/img/flowerShop.png",
+         "audio_src": "/assets/audio/flowerShop.mp3"
+      },
+      "library": {
+         "label": "library",
+         "img_src": "/assets/img/library.png",
+         "audio_src": "/assets/audio/library.mp3"
+      },
+      "mountain": {
+         "label": "mountain",
+         "img_src": "/assets/img/mountain.png",
+         "audio_src": "/assets/audio/mountain.mp3"
+      },
+      "movieTheater": {
+         "label": "movie theater",
+         "img_src": "/assets/img/movieTheater.png",
+         "audio_src": "/assets/audio/movieTheater.mp3"
+      },
+      "museum": {
+         "label": "museum",
+         "img_src": "/assets/img/museum.png",
+         "audio_src": "/assets/audio/museum.mp3"
+      },
+      "park": {
+         "label": "park",
+         "img_src": "/assets/img/park.png",
+         "audio_src": "/assets/audio/park.mp3"
+      },
+      "policeStation": {
+         "label": "police station",
+         "img_src": "/assets/img/policeStation.png",
+         "audio_src": "/assets/audio/policeStation.mp3"
+      },
+      "postOffice": {
+         "label": "post office",
+         "img_src": "/assets/img/postOffice.png",
+         "audio_src": "/assets/audio/postOffice.mp3"
+      },
+      "restaurant": {
+         "label": "restaurant",
+         "img_src": "/assets/img/restaurant.png",
+         "audio_src": "/assets/audio/restaurant.mp3"
+      },
+      "river": {
+         "label": "river",
+         "img_src": "/assets/img/river.png",
+         "audio_src": "/assets/audio/river.mp3"
+      },
+      "school": {
+         "label": "school",
+         "img_src": "/assets/img/school.png",
+         "audio_src": "/assets/audio/school.mp3"
+      },
+      "sea": {
+         "label": "sea",
+         "img_src": "/assets/img/sea.jpg",
+         "audio_src": "/assets/audio/sea.mp3"
+      },
+      "zoo": {
+         "label": "zoo",
+         "img_src": "/assets/img/zoo.png",
+         "audio_src": "/assets/audio/zoo.mp3"
+      },
+      "square": {
+         "label": "square",
+         "img_src": "/assets/img/square.svg",
+         "audio_src": "/assets/audio/square.mp3"
+      },
+      "circle": {
+         "label": "circle",
+         "img_src": "/assets/img/circle.svg",
+         "audio_src": "/assets/audio/circle.mp3"
+      },
+      "rectangle": {
+         "label": "rectangle",
+         "img_src": "/assets/img/rectangle.svg",
+         "audio_src": "/assets/audio/rectangle.mp3"
+      },
+      "triangle": {
+         "label": "triangle",
+         "img_src": "/assets/img/triangle.svg",
+         "audio_src": "/assets/audio/triangle.mp3"
+      },
+      "heart": {
+         "label": "heart",
+         "img_src": "/assets/img/heart.svg",
+         "audio_src": "/assets/audio/heart.mp3"
+      },
+      "star": {
+         "label": "star",
+         "img_src": "/assets/img/star.svg",
+         "audio_src": "/assets/audio/star.mp3"
+      },
+      "diamond": {
+         "label": "diamond",
+         "img_src": "/assets/img/diamond.svg",
+         "audio_src": "/assets/audio/diamond.mp3"
+      },
+      "soccer": {
+         "label": "soccer",
+         "img_src": "/assets/img/soccer.png",
+         "audio_src": "/assets/audio/soccer.mp3"
+      },
+      "baseball": {
+         "label": "baseball",
+         "img_src": "/assets/img/baseball.png",
+         "audio_src": "/assets/audio/baseball.mp3"
+      },
+      "basketball": {
+         "label": "basketball",
+         "img_src": "/assets/img/basketball.png",
+         "audio_src": "/assets/audio/basketball.mp3"
+      },
+      "dodgeball": {
+         "label": "dodgeball",
+         "img_src": "/assets/img/dodgeball.png",
+         "audio_src": "/assets/audio/dodgeball.mp3"
+      },
+      "swimming": {
+         "label": "swimming",
+         "img_src": "/assets/img/swimming.png",
+         "audio_src": "/assets/audio/swimming.mp3"
+      },
+      "tennis": {
+         "label": "tennis",
+         "img_src": "/assets/img/tennis.png",
+         "audio_src": "/assets/audio/tennis.mp3"
+      },
+      "tableTennis": {
+         "label": "table tennis",
+         "img_src": "/assets/img/tableTennis.png",
+         "audio_src": "/assets/audio/tableTennis.mp3"
+      },
+      "volleyball": {
+         "label": "volleyball",
+         "img_src": "/assets/img/volleyball.png",
+         "audio_src": "/assets/audio/volleyball.mp3"
+      },
+      "iceCream": {
+         "label": "ice cream",
+         "img_src": "/assets/img/iceCream.png",
+         "audio_src": "/assets/audio/iceCream.mp3"
+      },
+      "milk": {
+         "label": "milk",
+         "img_src": "/assets/img/milk.png",
+         "audio_src": "/assets/audio/milk.mp3"
+      },
+      "pudding": {
+         "label": "pudding",
+         "img_src": "/assets/img/pudding.png",
+         "audio_src": "/assets/audio/pudding.mp3"
+      },
+      "onion": {
+         "label": "onion",
+         "img_src": "/assets/img/onion.png",
+         "audio_src": "/assets/audio/onion.mp3"
+      },
+      "greenPepper": {
+         "label": "green pepper",
+         "img_src": "/assets/img/greenPepper.png",
+         "audio_src": "/assets/audio/greenPepper.mp3"
+      },
+      "strawberry": {
+         "label": "strawberry",
+         "img_src": "/assets/img/strawberry.png",
+         "audio_src": "/assets/audio/strawberry.mp3"
+      },
+      "carrot": {
+         "label": "carrot",
+         "img_src": "/assets/img/carrot.png",
+         "audio_src": "/assets/audio/carrot.mp3"
+      },
+      "cucumber": {
+         "label": "cucumber",
+         "img_src": "/assets/img/cucumber.png",
+         "audio_src": "/assets/audio/cucumber.mp3"
+      },
+      "orangeJuice": {
+         "label": "orange juice",
+         "img_src": "/assets/img/orangeJuice.png",
+         "audio_src": "/assets/audio/orangeJuice.mp3"
+      },
+      "apple": {
+         "label": "apple",
+         "img_src": "/assets/img/apple.png",
+         "audio_src": "/assets/audio/apple.mp3"
+      },
+      "orangeFood": {
+         "label": "orange",
+         "img_src": "/assets/img/orangeFood.png",
+         "audio_src": "/assets/audio/orange.mp3"
+      },
+      "grapes": {
+         "label": "grapes",
+         "img_src": "/assets/img/grapes.png",
+         "audio_src": "/assets/audio/grapes.mp3"
+      },
+      "lemon": {
+         "label": "lemon",
+         "img_src": "/assets/img/lemon.png",
+         "audio_src": "/assets/audio/lemon.mp3"
+      },
+      "kiwi": {
+         "label": "kiwi",
+         "img_src": "/assets/img/kiwi.png",
+         "audio_src": "/assets/audio/kiwi.mp3"
+      },
+      "noodles": {
+         "label": "noodles",
+         "img_src": "/assets/img/noodles.png",
+         "audio_src": "/assets/audio/noodles.mp3"
+      },
+      "hamburger": {
+         "label": "hamburger",
+         "img_src": "/assets/img/hamburger.png",
+         "audio_src": "/assets/audio/hamburger.mp3"
+      },
+      "egg": {
+         "label": "egg",
+         "img_src": "/assets/img/egg.png",
+         "audio_src": "/assets/audio/egg.mp3"
+      },
+      "pizza": {
+         "label": "pizza",
+         "img_src": "/assets/img/pizza.png",
+         "audio_src": "/assets/audio/pizza.mp3"
+      },
+      "jam": {
+         "label": "jam",
+         "img_src": "/assets/img/jam.png",
+         "audio_src": "/assets/audio/jam.mp3"
+      },
+      "who": {
+         "label": "who",
+         "img_src": "/assets/img/who.svg",
+         "audio_src": "/assets/audio/who.mp3"
+      },
+      "what": {
+         "label": "what",
+         "img_src": "/assets/img/what.png",
+         "audio_src": "/assets/audio/what.mp3"
+      },
+      "when": {
+         "label": "when",
+         "img_src": "/assets/img/when.png",
+         "audio_src": "/assets/audio/when.mp3"
+      },
+      "where": {
+         "label": "where",
+         "img_src": "/assets/img/where.png",
+         "audio_src": "/assets/audio/where.mp3"
+      },
+      "why": {
+         "label": "why",
+         "img_src": "/assets/img/why.svg",
+         "audio_src": "/assets/audio/why.mp3"
+      },
+      "how": {
+         "label": "how",
+         "img_src": "/assets/img/how.png",
+         "audio_src": "/assets/audio/how.mp3"
+      },
+      "graduationCeremony": {
+         "label": "graduation ceremony",
+         "img_src": "/assets/img/graduationCeremony.png",
+         "audio_src": "/assets/audio/graduationCeremony.mp3"
+      },
+      "entranceCeremony": {
+         "label": "entrance ceremony",
+         "img_src": "/assets/img/entranceCeremony.png",
+         "audio_src": "/assets/audio/entranceCeremony.mp3"
+      },
+      "fieldTrip": {
+         "label": "field trip",
+         "img_src": "/assets/img/fieldTrip.png",
+         "audio_src": "/assets/audio/fieldTrip.mp3"
+      },
+      "schoolTrip": {
+         "label": "school trip",
+         "img_src": "/assets/img/schoolTrip.png",
+         "audio_src": "/assets/audio/schoolTrip.mp3"
+      },
+      "sportsDay": {
+         "label": "sports day",
+         "img_src": "/assets/img/sportsDay.png",
+         "audio_src": "/assets/audio/sportsDay.mp3"
+      },
+      "marathon": {
+         "label": "marathon",
+         "img_src": "/assets/img/marathon.png",
+         "audio_src": "/assets/audio/marathon.mp3"
+      },
+      "swimmingMeet": {
+         "label": "swimming meet",
+         "img_src": "/assets/img/swimmingMeet.png",
+         "audio_src": "/assets/audio/swimmingMeet.mp3"
+      },
+      "chorusContest": {
+         "label": "chorus contest",
+         "img_src": "/assets/img/chorusContest.png",
+         "audio_src": "/assets/audio/chorusContest.mp3"
+      },
+      "schoolPlay": {
+         "label": "school play",
+         "img_src": "/assets/img/schoolPlay.png",
+         "audio_src": "/assets/audio/schoolPlay.mp3"
+      },
+      "musicFestival": {
+         "label": "music festival",
+         "img_src": "/assets/img/musicFestival.png",
+         "audio_src": "/assets/audio/musicFestival.mp3"
+      },
+      "cultureFestival": {
+         "label": "culture festival",
+         "img_src": "/assets/img/cultureFestival.png",
+         "audio_src": "/assets/audio/cultureFestival.mp3"
+      },
+      "volunteerDay": {
+         "label": "volunteer day",
+         "img_src": "/assets/img/volunteerDay.png",
+         "audio_src": "/assets/audio/volunteerDay.mp3"
+      }
+   }
+}

@@ -1,0 +1,645 @@
+ <!DOCTYPE html>
+<html class="h-full" >
+<head>
+    <meta charset="UTF-8">
+    <script src="/assets/js/htmx.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    
+<script src="/assets/js/player.js"></script>
+<script defer src="/assets/js/alpine.min.js"></script>
+
+</head>
+<body
+    class="h-full"
+    style="background-image: url('/assets/img/darkwood.jpg'); font-family: sans-serif"
+    hx-boost="false"
+>
+<div class="h-full" x-data="player">
+    <button
+        id="newQuestion"
+        type="button"
+        class="w-24 h-24 absolute right-4 top-4
+            bg-slate-200 hover:bg-slate-300
+            border-b-4 border-r-2 border-slate-400 hover:border-slate-500
+            rounded-lg"
+        x-on:click="newQuestion"
+        x-show="state != playerState.Asking"
+    >
+        <img src="/assets/img/next.png" alt="New question" draggable="false">
+    </button>
+
+    <button
+            id="checkAnswer"
+            class="w-24 h-24 absolute left-4 top-4
+                bg-slate-200 enabled:hover:bg-slate-300
+                border-b-4 border-r-2 border-slate-400 enabled:hover:border-slate-500
+                rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            x-on:click="checkAnswer"
+            x-show="state === playerState.Asking"
+    >
+        <img src="/assets/img/yesno.png" alt="Check Answer" draggable="false">
+    </button>
+
+    <span id="score"
+        class="absolute inset-x-0 top-2 text-center text-2xl"
+        x-data="{ correctAnswers: [], firstTry: true }"
+        x-bind:class="correctAnswers.length === 10 ? 'text-green-400' : 'text-white'"
+        x-text="correctAnswers.length + '/10'"
+        x-on:correct.window="if (firstTry && !correctAnswers.includes($event.detail.answer)) { correctAnswers.push($event.detail.answer); } firstTry = true;"
+        x-on:incorrect.window="const i = correctAnswers.indexOf(question.label); if (i > -1) { correctAnswers.splice(i, 1); firstTry = false; }"
+        x-on:settingschanged.window="correctAnswers = []; firstTry = true"
+    ></span>
+
+    <div x-data="{ open: false }">
+        <button type="button"
+                class="w-14 h-14 absolute bottom-4 right-4 rounded-lg text-3xl"
+                x-bind:class="open ? 'bg-slate-300 shadow-inner' :
+                    'bg-slate-200 hover:bg-slate-300 active:bg-slate-400\
+                        border-b-4 border-r-2 border-slate-400 hover:border-slate-500 active:border-0'"
+                x-on:click="open = ! open"
+        >
+            ⚙️
+        </button>
+        <div id="settingsView"
+            class="absolute bottom-4 right-20 text-3xl text-center z-20"
+            x-show="open"
+            x-transition
+        >
+          <form id="questionForm" class="bg-white/90">
+             <span>❓</span>
+             <hr>
+             <span class="w-80 flex flex-nowrap justify-around">
+                 <span>
+                     <label for="questionAudioCheckbox">🔈</label>
+                     <input type="checkbox"
+                         id="questionAudioCheckbox"
+                         class="w-7 h-7"
+                         x-model="settings.question.playsAudio"
+                         x-on:change="$dispatch('settingschanged')"
+                    >
+                 </span>
+                 <span>
+                     <label for="questionImageCheckbox">🖼️</label>
+                     <input type="checkbox"
+                         id="questionImageCheckbox"
+                         class="w-7 h-7"
+                         x-model="settings.question.showsImage"
+                         x-on:change="$dispatch('settingschanged')"
+                    >
+                 </span>
+                 <span>
+                     <label for="questionLabelCheckbox">🔤</label>
+                     <input type="checkbox"
+                         id="questionLabelCheckbox"
+                         class="w-7 h-7"
+                         x-model="settings.question.showsLabel"
+                         x-on:change="$dispatch('settingschanged')"
+                    >
+                 </span>
+             </span>
+          </form>
+          <br>
+          <form id="answerForm" class="bg-white/90">
+             <span>🙋</span>
+             <hr>
+             <span class="w-80 flex flex-nowrap justify-around">
+                 <span>
+                     <label for="answerAudioCheckbox" class="ml-4">🔈</label>
+                     <input type="checkbox"
+                         id="answerAudioCheckbox"
+                         class="w-7 h-7"
+                         x-model="settings.answer.playsAudio"
+                         x-on:change="$dispatch('settingschanged')"
+                    >
+                 </span>
+                 <span>
+                     <label for="answerImageCheckbox" class="ml-4">🖼️</label>
+                     <input type="checkbox"
+                         id="answerImageCheckbox"
+                         class="w-7 h-7"
+                         x-model="settings.answer.showsImage"
+                         x-on:change="$dispatch('settingschanged')"
+                    >
+                 </span>
+                 <span>
+                     <label for="answerLabelCheckbox" class="ml-4">🔤</label>
+                     <input type="checkbox"
+                         id="answerLabelCheckbox"
+                         class="w-7 h-7"
+                         x-model="settings.answer.showsLabel"
+                         x-on:change="$dispatch('settingschanged')"
+                    >
+                 </span>
+             </span>
+          </form>
+        </div>
+    </div>
+
+    <div class="h-full w-full flex flex-col justify-evenly items-center">
+        <div
+            class="w-40 h-40 border-dashed border-4 border-white rounded-lg
+                    flex flex-col items-center justify-evenly"
+            x-on:click="settings.question.playsAudio && $dispatch('playquestionaudio')"
+            x-show="state !== playerState.Initial"
+            x-ref="target"
+        >
+            <img
+                class="w-24 h-24 object-contain rounded-md"
+                x-bind:src="question?.img_src"
+                x-bind:alt="question?.label"
+                x-show="settings.question.showsImage"
+                x-transition
+                draggable="false"
+            />
+            <span
+                class="px-2 bg-white rounded-md"
+                x-text="question?.label"
+                x-show="settings.question.showsLabel"
+                x-transition
+            ></span>
+            <img
+                src="/assets/img/speaker.png"
+                alt="question audio indicator"
+                class="w-6 bg-blue-500 rounded-full"
+                x-show="settings.question.playsAudio"
+                x-transition
+            />
+            <audio
+                x-bind:src="question?.audio_src"
+                x-on:playquestionaudio.window="settings.question.playsAudio && $el.play()"
+                x-on:newquestion.window="if (settings.question.playsAudio) { $el.autoplay = true; $el.load(); }"
+            ></audio>
+        </div>
+        <div class="w-10/12 flex flex-wrap justify-evenly items-center gap-2"
+            x-on:newquestion.window="shuffle(words)"
+            x-on:settingschanged.window="shuffle(words)"
+        >
+        
+            <div
+                id="happy"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;happy&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/happy.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/happy.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('happy') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/happy.png"
+                    alt="happy"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >happy</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="happy audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/happy.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="sad"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;sad&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/sad.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/sad.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('sad') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/sad.png"
+                    alt="sad"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >sad</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="sad audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/sad.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="angry"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;angry&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/angry.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/angry.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('angry') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/angry.png"
+                    alt="angry"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >angry</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="angry audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/angry.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="hungry"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;hungry&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/hungry.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/hungry.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('hungry') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/hungry.png"
+                    alt="hungry"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >hungry</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="hungry audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/hungry.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="thirsty"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;thirsty&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/thirsty.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/thirsty.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('thirsty') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/thirsty.png"
+                    alt="thirsty"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >thirsty</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="thirsty audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/thirsty.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="sleepy"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;sleepy&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/sleepy.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/sleepy.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('sleepy') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/sleepy.png"
+                    alt="sleepy"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >sleepy</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="sleepy audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/sleepy.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="tired"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;tired&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/tired.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/tired.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('tired') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/tired.png"
+                    alt="tired"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >tired</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="tired audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/tired.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="nervous"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;nervous&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/nervous.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/nervous.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('nervous') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/nervous.png"
+                    alt="nervous"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >nervous</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="nervous audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/nervous.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="sick"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;sick&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/sick.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/sick.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('sick') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/sick.png"
+                    alt="sick"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >sick</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="sick audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/sick.mp3" x-ref="audio"></audio>
+            </div>
+        
+            <div
+                id="hurt"
+                class="moveable flex flex-col justify-between items-center z-10 touch-none gap-1
+                    drop-shadow-[0.1rem_0.3rem_0.3rem_rgb(0,0,0,0.8)]"
+                x-init="words.push({
+  &quot;label&quot;: &quot;hurt&quot;,
+  &quot;img_src&quot;: &quot;/assets/img/hurt.png&quot;,
+  &quot;audio_src&quot;: &quot;/assets/audio/hurt.mp3&quot;
+})"
+                x-data="{ hasMoved: false, isDragging: false, answered: false, correct: undefined,
+                    pos: { x: 0, y: 0 }, lastMousePos: { x: 0, y: 0 } }"
+                x-bind:class="(hasMoved && 'relative ') + (answered && 'outline-2 outline-dashed ') + (correct ? 'outline-green-500' : 'outline-red-500')"
+                x-bind:style="{ top: pos.y+'px', left: pos.x+'px', order: words.map(function(word) { return word.label } ).indexOf('hurt') }"
+                x-on:pointerdown.prevent="settings.answer.playsAudio && $refs.audio.play(); hasMoved = isDragging = true; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;"
+                x-on:pointermove.window="if (isDragging) { pos.x += $event.clientX - lastMousePos.x; pos.y += $event.clientY - lastMousePos.y; lastMousePos.x = $event.clientX; lastMousePos.y = $event.clientY;}"
+                x-on:pointerup.window="isDragging = false"
+                x-on:pointerleave.document="isDragging = false"
+                x-on:pointercancel="isDragging = false"
+                x-on:correct.window="if ($event.detail.answer === $el.id) { answered = correct = true; }"
+                x-on:incorrect.window="if ($event.detail.answer === $el.id) { answered = true; correct = false; }"
+                x-on:newquestion.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+                x-on:settingschanged.window="hasMoved = false; pos = { x: 0, y: 0 }; answered = correct = false;"
+            >
+                <img
+                    class="w-24 h-24 object-contain rounded-md"
+                    src="/assets/img/hurt.png"
+                    alt="hurt"
+                    x-show="settings.answer.showsImage"
+                    x-transition
+                    draggable="false"
+                />
+                <span
+                    class="px-2 bg-white rounded-md"
+                    x-show="settings.answer.showsLabel"
+                    x-transition
+                    >hurt</span>
+                <img
+                    src="/assets/img/speaker.png"
+                    class="w-6 bg-blue-500 rounded-full"
+                    alt="hurt audio indicator"
+                    x-show="settings.answer.playsAudio"
+                    x-transition
+                />
+                <audio src="/assets/audio/hurt.mp3" x-ref="audio"></audio>
+            </div>
+        
+        </div>
+    </div>
+</div>
+<a class="w-20 absolute left-4 bottom-4" href="/categories">
+    <img class="w-28" src="/assets/img/back.png" alt="Back" draggable="false">
+</a>
+</body>
+</html> 
