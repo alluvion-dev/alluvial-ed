@@ -1,14 +1,14 @@
-use std::{collections::HashMap, fs};
-
 use askama::Template;
+use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
+use std::fs;
 
 #[derive(Clone, Deserialize)]
 struct Db<'a> {
     #[serde(borrow)]
-    categories: HashMap<&'a str, Category<'a>>,
+    categories: IndexMap<&'a str, Category<'a>>,
     #[serde(borrow)]
-    words: HashMap<&'a str, WordInfo<'a>>,
+    words: IndexMap<&'a str, WordInfo<'a>>,
 }
 
 #[derive(Clone, Deserialize)]
@@ -28,7 +28,7 @@ struct WordInfo<'a> {
 #[derive(Template)]
 #[template(path = "categories.html")]
 struct CategoriesTemplate<'a> {
-    categories: &'a HashMap<&'a str, Category<'a>>,
+    categories: &'a IndexMap<&'a str, Category<'a>>,
 }
 
 #[derive(Template)]
