@@ -28,7 +28,7 @@ struct WordInfo<'a> {
 #[derive(Template)]
 #[template(path = "categories.html")]
 struct CategoriesTemplate<'a> {
-    categories: Box<[(&'a &'a str, &'a Category<'a>)]>,
+    categories: &'a HashMap<&'a str, Category<'a>>,
 }
 
 #[derive(Template)]
@@ -40,13 +40,13 @@ struct PlayerTemplate<'a> {
 fn main() {
     let db = std::fs::read_to_string("./db/db.json").expect("could not load db file");
     let db: Db = serde_json::from_str(&db).expect("could not parse db file");
-    let categories = db.categories;
+    let categories = &db.categories;
 
     let _ = fs::remove_file("./index.html");
     let _ = fs::remove_dir_all("./categories/");
     fs::create_dir_all("./categories").unwrap();
 
-    for (name, category) in categories.iter() {
+    for (name, category) in categories {
         let words = category.words.iter().map(|word| &db.words[word]).collect();
         let page = PlayerTemplate { words }
             .render()
@@ -54,10 +54,8 @@ fn main() {
         fs::write(format!("./categories/{name}.html"), page)
             .expect("Unable to write file for category '{category}'");
     }
-    let category_page = CategoriesTemplate {
-        categories: categories.iter().collect(),
-    }
-    .render()
-    .expect("could not render category page");
+    let category_page = CategoriesTemplate { categories }
+        .render()
+        .expect("could not render category page");
     fs::write("./index.html", category_page).expect("Unable to write category file");
 }
