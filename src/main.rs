@@ -34,6 +34,7 @@ struct CategoriesTemplate<'a> {
 #[derive(Template)]
 #[template(path = "player.html")]
 struct PlayerTemplate<'a> {
+    category_label: &'a str,
     words: Box<[&'a WordInfo<'a>]>,
 }
 
@@ -48,9 +49,12 @@ fn main() {
 
     for (name, category) in categories {
         let words = category.words.iter().map(|word| &db.words[word]).collect();
-        let page = PlayerTemplate { words }
-            .render()
-            .expect("could not render page for category '{category}'");
+        let page = PlayerTemplate {
+            category_label: category.label,
+            words,
+        }
+        .render()
+        .expect("could not render page for category '{category}'");
         fs::write(format!("./categories/{name}.html"), page)
             .expect("Unable to write file for category '{category}'");
     }
