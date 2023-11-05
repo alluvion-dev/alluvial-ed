@@ -6,7 +6,7 @@
 <div class="flex flex-wrap items-center justify-around">
 {% for (name, category) in categories %}
     <a class="m-5 text-center" href="/categories/{{ name }}.html" >
-        <img class="w-40 h-40 object-contain rounded-md" src="{{ category.icon_src|safe }}" alt="{{ category.label|e }}" />
+        <img class="w-40 h-40 object-contain rounded-md" src="{{ category.icon_src|safe }}" alt="" />
         <span class="px-2 bg-white rounded-md">{{ category.label|e }}</span>
     </a>
 {% endfor %}
