@@ -77,7 +77,7 @@
       },
       "colors": {
          "label": "Colors",
-         "icon_src": "/assets/img/Color_circle_(RGB).svg",
+         "icon_src": "/assets/img/Colorwheel.svg",
          "words": [
             "blue",
             "red",
