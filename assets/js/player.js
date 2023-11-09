@@ -54,7 +54,7 @@ document.addEventListener('alpine:init', () => {
             answer: {
                 playsAudio: false,
                 showsImage: true,
-                showsLabel: false,
+                showsLabel: true,
             }
         },
         words: [],
