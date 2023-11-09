@@ -68,6 +68,9 @@ document.addEventListener('alpine:init', () => {
             this.question = this.words[index];
             this.state = playerState.Asking;
 
+            if (prevQuestion === this.question) {
+                this.$dispatch('playquestionaudio');
+            }
             this.$dispatch('newquestion');
         },
         checkAnswer() {
