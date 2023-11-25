@@ -3,6 +3,10 @@
 {% block title %}Categories{% endblock %}
 {% block description %}List of word categories to practice{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="/assets/css/categories.css">
+{% endblock %}
+
 {% block content %}
 <div class="category-grid">
 {% for (name, category) in categories %}
