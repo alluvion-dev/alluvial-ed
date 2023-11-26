@@ -36,7 +36,7 @@
         x-bind:style="(correctAnswers.length === {{ words.len() }}) && 'color: lightgreen'"
         x-text="correctAnswers.length + '/{{ words.len() }}'"
         x-on:correct.window="if (firstTry && !correctAnswers.includes($event.detail.answer)) { correctAnswers.push($event.detail.answer); } firstTry = true;"
-        x-on:incorrect.window="const i = correctAnswers.indexOf(question.label); if (i > -1) { correctAnswers.splice(i, 1); firstTry = false; }"
+        x-on:incorrect.window="firstTry = false; const i = correctAnswers.indexOf(question.label); if (i > -1) { correctAnswers.splice(i, 1); }"
         x-on:settingschanged.window="correctAnswers = []; firstTry = true"
     ></span>
 
