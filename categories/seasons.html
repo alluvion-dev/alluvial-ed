@@ -47,7 +47,7 @@
         x-bind:class="correctAnswers.length === 4 ? 'text-green-400' : 'text-white'"
         x-text="correctAnswers.length + '/4'"
         x-on:correct.window="if (firstTry && !correctAnswers.includes($event.detail.answer)) { correctAnswers.push($event.detail.answer); } firstTry = true;"
-        x-on:incorrect.window="const i = correctAnswers.indexOf(question.label); if (i > -1) { correctAnswers.splice(i, 1); firstTry = false; }"
+        x-on:incorrect.window="firstTry = false; const i = correctAnswers.indexOf(question.label); if (i > -1) { correctAnswers.splice(i, 1); }"
         x-on:settingschanged.window="correctAnswers = []; firstTry = true"
     ></span>
 
