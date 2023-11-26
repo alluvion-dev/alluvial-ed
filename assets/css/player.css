@@ -45,11 +45,8 @@ img {
 .settings {
 	grid-area: -2 / 3;
 	place-self: end;
-	margin: 0 1em 1em 0;
+	margin: 0 1rem 1rem 0;
 	z-index: 1;
-}
-
-.settings__button {
 	width: 5rem;
 	height: 5rem;
 	border-radius: 1rem;
@@ -57,11 +54,16 @@ img {
 }
 
 .settings__dialog {
-	position: absolute;
 	bottom: 1rem;
 	right: 8rem;
+	inset-inline-start: auto;
+	margin: 0;
+	padding: 0;
+	border: none;
+	background: none;
 	font-size: 2em;
 	text-align: center;
+	z-index: 3;
 }
 
 .settings__form {

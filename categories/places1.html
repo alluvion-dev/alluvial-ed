@@ -43,88 +43,88 @@
         x-on:settingschanged.window="correctAnswers = []; firstTry = true"
     ></span>
 
-    <div class="settings" x-data="{ open: false }">
-        <button type="button"
-                class="settings__button"
-                x-on:click="open = ! open"
-        >
-            ⚙️
-        </button>
-        <div 
-            class="settings__dialog"
-            x-show="open"
-            x-on:click.outside="open = false"
-            x-transition
-        >
-          <form id="questionForm" class="settings__form">
-             <span>❓</span>
-             <hr>
-             <span class="settings__input-span">
-                 <span>
-                     <label for="questionAudioCheckbox">🔈</label>
-                     <input type="checkbox"
-                         id="questionAudioCheckbox"
-                         class="settings__checkbox"
-                         x-model="settings.question.playsAudio"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
-                 </span>
-                 <span>
-                     <label for="questionImageCheckbox">🖼️</label>
-                     <input type="checkbox"
-                         id="questionImageCheckbox"
-                         class="settings__checkbox"
-                         x-model="settings.question.showsImage"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
-                 </span>
-                 <span>
-                     <label for="questionLabelCheckbox">🔤</label>
-                     <input type="checkbox"
-                         id="questionLabelCheckbox"
-                         class="settings__checkbox"
-                         x-model="settings.question.showsLabel"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
-                 </span>
+    <button
+            id="settings-button"
+            type="button"
+            class="settings"
+            x-on:click="$refs.settingsDialog.open ? $refs.settingsDialog.close() : $refs.settingsDialog.show()"
+    >
+        ⚙️
+    </button>
+    <dialog 
+        id="settings-dialog"
+        class="settings__dialog"
+        x-ref="settingsDialog"
+        x-on:click.window="if (clickedOutside(event, $el) && event.target.id !== 'settings-button') { $el.close() }"
+    >
+      <form id="questionForm" class="settings__form">
+         <span>❓</span>
+         <hr>
+         <span class="settings__input-span">
+             <span>
+                 <label for="questionAudioCheckbox">🔈</label>
+                 <input type="checkbox"
+                     id="questionAudioCheckbox"
+                     class="settings__checkbox"
+                     x-model="settings.question.playsAudio"
+                     x-on:change="$dispatch('settingschanged')"
+                >
              </span>
-          </form>
-          <br>
-          <form id="answerForm" class="settings__form">
-             <span>🙋</span>
-             <hr>
-             <span class="settings__input-span">
-                 <span>
-                     <label for="answerAudioCheckbox">🔈</label>
-                     <input type="checkbox"
-                         id="answerAudioCheckbox"
-                         class="settings__checkbox"
-                         x-model="settings.answer.playsAudio"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
-                 </span>
-                 <span>
-                     <label for="answerImageCheckbox">🖼️</label>
-                     <input type="checkbox"
-                         id="answerImageCheckbox"
-                         class="settings__checkbox"
-                         x-model="settings.answer.showsImage"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
-                 </span>
-                 <span>
-                     <label for="answerLabelCheckbox">🔤</label>
-                     <input type="checkbox"
-                         id="answerLabelCheckbox"
-                         class="settings__checkbox"
-                         x-model="settings.answer.showsLabel"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
-                 </span>
+             <span>
+                 <label for="questionImageCheckbox">🖼️</label>
+                 <input type="checkbox"
+                     id="questionImageCheckbox"
+                     class="settings__checkbox"
+                     x-model="settings.question.showsImage"
+                     x-on:change="$dispatch('settingschanged')"
+                >
              </span>
-          </form>
-        </div>
-    </div>
+             <span>
+                 <label for="questionLabelCheckbox">🔤</label>
+                 <input type="checkbox"
+                     id="questionLabelCheckbox"
+                     class="settings__checkbox"
+                     x-model="settings.question.showsLabel"
+                     x-on:change="$dispatch('settingschanged')"
+                >
+             </span>
+         </span>
+      </form>
+      <br>
+      <form id="answerForm" class="settings__form">
+         <span>🙋</span>
+         <hr>
+         <span class="settings__input-span">
+             <span>
+                 <label for="answerAudioCheckbox">🔈</label>
+                 <input type="checkbox"
+                     id="answerAudioCheckbox"
+                     class="settings__checkbox"
+                     x-model="settings.answer.playsAudio"
+                     x-on:change="$dispatch('settingschanged')"
+                >
+             </span>
+             <span>
+                 <label for="answerImageCheckbox">🖼️</label>
+                 <input type="checkbox"
+                     id="answerImageCheckbox"
+                     class="settings__checkbox"
+                     x-model="settings.answer.showsImage"
+                     x-on:change="$dispatch('settingschanged')"
+                >
+             </span>
+             <span>
+                 <label for="answerLabelCheckbox">🔤</label>
+                 <input type="checkbox"
+                     id="answerLabelCheckbox"
+                     class="settings__checkbox"
+                     x-model="settings.answer.showsLabel"
+                     x-on:change="$dispatch('settingschanged')"
+                >
+             </span>
+         </span>
+      </form>
+    </dialog>
 
     <div
         class="target"
