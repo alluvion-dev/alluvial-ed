@@ -133,34 +133,32 @@
         x-show="state !== playerState.Initial"
         x-ref="target"
     >
-        <div class="target__question-wrapper">
-            <img
-                class="target__img"
-                x-bind:src="question?.img_src"
-                x-bind:alt="question?.label"
-                x-show="settings.question.showsImage"
-                x-transition
-                draggable="false"
-            />
-            <span
-                class="target__label"
-                x-text="question?.label"
-                x-show="settings.question.showsLabel"
-                x-transition
-            ></span>
-            <img
-                src="/assets/img/speaker.png"
-                alt="question audio indicator"
-                class="target__audio-indicator"
-                x-show="settings.question.playsAudio"
-                x-transition
-            />
-            <audio
-                x-bind:src="question?.audio_src"
-                x-on:playquestionaudio.window="settings.question.playsAudio && $el.play()"
-                autoplay
-            ></audio>
-        </div>
+        <img
+            class="target__img"
+            x-bind:src="question?.img_src"
+            x-bind:alt="question?.label"
+            x-show="settings.question.showsImage"
+            x-transition
+            draggable="false"
+        />
+        <span
+            class="target__label"
+            x-text="question?.label"
+            x-show="settings.question.showsLabel"
+            x-transition
+        ></span>
+        <img
+            src="/assets/img/speaker.png"
+            alt="question audio indicator"
+            class="target__audio-indicator"
+            x-show="settings.question.playsAudio"
+            x-transition
+        />
+        <audio
+            x-bind:src="question?.audio_src"
+            x-on:playquestionaudio.window="settings.question.playsAudio && $el.play()"
+            autoplay
+        ></audio>
     </div>
     <div class="question-area"
         x-on:newquestion.window="shuffle(words)"
