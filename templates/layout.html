@@ -1,12 +1,17 @@
  <!DOCTYPE html>
-<html lang="en">
+<html class="h-full" lang="en">
 <head>
     <title>{% block title %}{% endblock %} - AlluvialEd</title>
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/assets/js/htmx.min.js"></script>
     <link rel="stylesheet" href="/assets/css/site.css">
     {% block head %}{% endblock %}
 </head>
-<body >{% block content %}{% endblock %}</body>
+<body
+    class="h-full"
+    style="background-image: url('/assets/img/darkwood.jpg'); font-family: sans-serif"
+    hx-boost="false"
+>{% block content %}{% endblock %}</body>
 </html> 

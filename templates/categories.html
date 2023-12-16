@@ -3,16 +3,12 @@
 {% block title %}Categories{% endblock %}
 {% block description %}List of word categories to practice{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="/assets/css/categories.css">
-{% endblock %}
-
 {% block content %}
-<div class="category-grid">
+<div class="flex flex-wrap items-center justify-around">
 {% for (name, category) in categories %}
-    <a class="category-card" href="/categories/{{ name }}.html" >
-        <img class="category-card__img" src="{{ category.icon_src|safe }}" alt="" />
-        <span class="category-card__span">{{ category.label|e }}</span>
+    <a class="m-5 text-center" href="/categories/{{ name }}.html" >
+        <img class="w-40 h-40 object-contain rounded-md" src="{{ category.icon_src|safe }}" alt="" />
+        <span class="px-2 bg-white rounded-md">{{ category.label|e }}</span>
     </a>
 {% endfor %}
 </div>

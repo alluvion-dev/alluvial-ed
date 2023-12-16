@@ -43,19 +43,6 @@ function shuffle(arr) {
     return arr;
 };
 
-/**
- * @param {PointerEvent} event
- * @param {HTMLElement} el
- */
-function clickedOutside(event, el) {
-    const elRect = el.getBoundingClientRect();
-
-    return (elRect.top > event.clientY) ||
-        (event.clientY > (elRect.top + elRect.height)) ||
-        (elRect.left > event.clientX) ||
-        (event.clientX > (elRect.left + elRect.width))
-}
-
 document.addEventListener('alpine:init', () => {
     Alpine.data('player', () => ({
         settings: {
