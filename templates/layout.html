@@ -1,15 +1,30 @@
- <!DOCTYPE html>
-<html class="h-full" lang="en">
+<!DOCTYPE html>
+<html
+  class="h-full"
+  lang="en"
+>
+
 <head>
-    <title>{% block title %}{% endblock %} - AlluvialEd</title>
-    <meta name="description" content="{% block description %}{% endblock %}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/assets/css/site.css">
-    {% block head %}{% endblock %}
+  <title>{% block title %}{% endblock %} - AlluvialEd</title>
+  <meta
+    name="description"
+    content="{% block description %}{% endblock %}"
+  >
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+  <link
+    rel="stylesheet"
+    href="/assets/css/site.css"
+  >
+  {% block head %}{% endblock %}
 </head>
+
 <body
-    class="h-full"
-    style="background-image: url('/assets/img/darkwood.jpg'); font-family: sans-serif"
+  class="h-full"
+  style="background-image: url('/assets/img/darkwood.jpg'); font-family: sans-serif"
 >{% block content %}{% endblock %}</body>
-</html> 
+
+</html>
