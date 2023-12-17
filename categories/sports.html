@@ -51,34 +51,34 @@
         x-on:settingschanged.window="correctAnswers = []; firstTry = true"
     ></span>
 
-    <div x-data="{ open: false }">
-        <button type="button"
-                class="w-14 h-14 absolute bottom-4 right-4 rounded-lg text-3xl"
-                x-bind:class="open ? 'bg-slate-300 shadow-inner' :
-                    'bg-slate-200 hover:bg-slate-300 active:bg-slate-400\
-                        border-b-4 border-r-2 border-slate-400 hover:border-slate-500 active:border-0'"
-                x-on:click="open = ! open"
-        >
-            ⚙️
-        </button>
-        <div id="settingsView"
-            class="absolute bottom-4 right-20 text-3xl text-center z-20"
-            x-show="open"
-            x-on:click.outside="open = false"
-            x-transition
-        >
-          <form id="questionForm" class="bg-white/90">
-             <span>❓</span>
-             <hr>
-             <span class="w-80 flex flex-nowrap justify-around">
-                 <span>
-                     <label for="questionAudioCheckbox">🔈</label>
-                     <input type="checkbox"
-                         id="questionAudioCheckbox"
-                         class="w-7 h-7"
-                         x-model="settings.question.playsAudio"
-                         x-on:change="$dispatch('settingschanged')"
-                    >
+    <button
+            id="settings-button"
+            type="button"
+            class="w-14 h-14 absolute bottom-4 right-4 rounded-lg text-3xl"
+            x-bind:class="$refs.settingsDialog.open ? 'bg-slate-300 shadow-inner' :
+                'bg-slate-200 hover:bg-slate-300 active:bg-slate-400\
+                    border-b-4 border-r-2 border-slate-400 hover:border-slate-500 active:border-0'"
+            x-on:click="$refs.settingsDialog.open ? $refs.settingsDialog.close() : $refs.settingsDialog.show()"
+    >
+        ⚙️
+    </button>
+    <dialog
+        class="absolute start-auto m-0 bottom-4 right-20 text-3xl text-center z-20 bg-transparent"
+        x-ref="settingsDialog"
+        x-on:click.window="if (clickedOutside(event, $el) && event.target.id !== 'settings-button') { $el.close() }"
+    >
+      <form id="questionForm" class="bg-white/90">
+         <span>❓</span>
+         <hr>
+         <span class="w-80 flex flex-nowrap justify-around">
+             <span>
+                 <label for="questionAudioCheckbox">🔈</label>
+                 <input type="checkbox"
+                     id="questionAudioCheckbox"
+                     class="w-7 h-7"
+                     x-model="settings.question.playsAudio"
+                     x-on:change="$dispatch('settingschanged')"
+                >
                  </span>
                  <span>
                      <label for="questionImageCheckbox">🖼️</label>
@@ -134,8 +134,7 @@
                  </span>
              </span>
           </form>
-        </div>
-    </div>
+        </dialog>
 
     <div class="h-full w-full flex flex-col justify-evenly items-center">
         <div
