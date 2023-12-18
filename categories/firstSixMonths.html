@@ -210,7 +210,7 @@
       <audio
         x-bind:src="question?.audio_src"
         x-on:playquestionaudio.window="settings.question.playsAudio && $el.play()"
-        autoplay
+        x-on:canplaythrough="settings.question.playsAudio && $el.play()"
       ></audio>
     </div>
     <div
