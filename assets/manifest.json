@@ -1,0 +1,13 @@
+{
+  "name": "AlluvialEd",
+  "icons": [
+    {
+      "src": "/assets/img/green.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "fullscreen"
+}
